@@ -1,2 +1,4 @@
-# web-231
-Enterprise JavaScript I
+# WEB 231 Enterprise JavaScript I
+##Contributors
+-Winston Jo
+-Richard Krasso
