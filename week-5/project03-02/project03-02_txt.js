@@ -9,6 +9,24 @@
       Filename: project03-02.js
 */
 
+// Create an array to hold the file names for each image
+let imageFiles = new Array(14)
+imageFiles[0] = 'slide0.jpg'
+imageFiles[1] = 'slide1.jpg'
+imageFiles[2] = 'slide2.jpg'
+imageFiles[3] = 'slide3.jpg'
+imageFiles[4] = 'slide4.jpg'
+imageFiles[5] = 'slide5.jpg'
+imageFiles[6] = 'slide6.jpg'
+imageFiles[7] = 'slide7.jpg'
+imageFiles[8] = 'slide8.jpg'
+imageFiles[9] = 'slide9.jpg'
+imageFiles[10] = 'slide10.jpg'
+imageFiles[11] = 'slide11.jpg'
+imageFiles[12] = 'slide12.jpg'
+imageFiles[13] = 'slide13.jpg'
+
+// Create an array to hold the captions for each image
 let captions = new Array(14)
 captions[0] = 'International Space Station fourth expansion [2009]'
 captions[1] = 'Assembling the International Space Station [1998]'
@@ -25,21 +43,27 @@ captions[11] = 'The International Space Station second expansion [2006]'
 captions[12] = 'The International Space Station third expansion [2007]'
 captions[13] = 'The ISS over the Ionian Sea [2007]'
 
-// create empty string that will store the HTML for the gallery
-let galleryHTML = ''
+// Reference to the gallery section
+let gallery = document.getElementById('gallery')
 
-// Loop through the captions array to create the HTML for each image in the gallery
-for (let i = 0; i < captions.length; i++) {
-  //add the opening figure tag
-  galleryHTML += '<figure>'
-  //add the image for the current caption
-  galleryHTML +=
-    '<img src="images/slide' + i + '.jpg" alt="' + captions[i] + '">'
-  //add the caption for the current image
-  galleryHTML += '<figcaption>' + captions[i] + '</figcaption>'
-  //add the closing figure tag
-  galleryHTML += '</figure>'
+// Create a loop to generate the HTML for each image in the gallery
+for (let i = 0; i < imageFiles.length; i++) {
+  // Create a figure element for the current image
+  let figure = document.createElement('figure')
+
+  // Create an image element for the current image
+  let img = document.createElement('img')
+  img.src = 'images/' + imageFiles[i]
+  img.alt = captions[i]
+
+  // Create a caption element for the current image
+  let caption = document.createElement('figcaption')
+  caption.textContent = captions[i]
+
+  // Append the image and caption to the figure
+  figure.appendChild(img)
+  figure.appendChild(caption)
+
+  // Append the figure to the gallery
+  gallery.appendChild(figure)
 }
-
-// Display the completed gallery
-document.getElementById('gallery').innerHTML = galleryHTML
