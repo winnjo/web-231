@@ -36,6 +36,7 @@ function zeroTheRegister () {
 
 // Function to run the cash register
 function runTheRegister () {
+  // Reset the values in the web page
   zeroTheRegister()
 
   let changeValue = cashBox.value - billBox.value // calculate the change
@@ -43,7 +44,7 @@ function runTheRegister () {
   try {
     // Check if the change is negative
     if (changeValue < 0) {
-      throw "Cash amount doesn't cover the bill amount."
+      throw "Cash amount doesn't cover the bill."
     }
 
     //Display the calculated change
@@ -71,7 +72,7 @@ function calcChange (changeValue) {
   // Determine the number of $5 bills
   let bill5Amt = determineCoin(changeValue, 5)
   document.getElementById('bill5').innerHTML = bill5Amt
-  changeValue -= bill5Amt * 3
+  changeValue -= bill5Amt * 5
 
   // Determine the number of $1 bills
   let bill1Amt = determineCoin(changeValue, 1)
