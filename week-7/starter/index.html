@@ -17,18 +17,26 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
   </head>
+
   <body>
     <!-- Page header with title and instructions -->
     <header>
       <h1>Timed Practice Quiz</h1>
       <p>Complete the setup form to begin your timed practice quiz.</p>
     </header>
+
     <main>
       <!-- Two-column layout: sidebar (left) and quiz section (right) -->
       <div class="app-grid">
-        <!-- Left sidebar with setup form and summary -->
+        <!-- Left sidebar -->
         <aside class="sidebar">
-          <!-- Quiz setup form - initial data entry -->
+          <!-- Countdown timer moved into the sidebar -->
+          <div class="timer-box">
+            <span class="timer-label">Time Left</span>
+            <input id="quizClock" value="60" readonly />
+          </div>
+
+          <!-- Quiz setup form -->
           <section class="setup-section">
             <h2>Quiz Setup</h2>
 
@@ -51,6 +59,54 @@
                 />
               </div>
 
+              <!-- Last name input field -->
+              <div class="form-row">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  required
+                />
+              </div>
+
+              <!-- Email address input field -->
+              <div class="form-row">
+                <label for="emailAddress">Email Address</label>
+                <input
+                  type="email"
+                  id="emailAddress"
+                  name="emailAddress"
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+
+              <!-- Course section dropdown -->
+              <div class="form-row">
+                <label for="courseSection">Course Section</label>
+                <select id="courseSection" name="courseSection" required>
+                  <option value="">Select a course section</option>
+                  <option value="WEB 231">WEB 231</option>
+                  <option value="WEB 330">WEB 330</option>
+                  <option value="WEB 340">WEB 340</option>
+                  <option value="WEB 425">WEB 425</option>
+                </select>
+              </div>
+
+              <!-- Quiz topic input field -->
+              <div class="form-row">
+                <label for="quizTopic">Quiz Topic</label>
+                <input
+                  type="text"
+                  id="quizTopic"
+                  name="quizTopic"
+                  placeholder="Enter the quiz topic"
+                  required
+                />
+              </div>
+
               <!-- Error message display area -->
               <p id="errorBox" class="error-box"></p>
 
@@ -61,48 +117,59 @@
             </form>
           </section>
 
-          <!-- Participant summary - shown after quiz starts -->
+          <!-- Participant summary -->
           <section id="summarySection" class="summary-section hidden">
             <h2>Participant Summary</h2>
 
-            <!-- Display confirmed participant information -->
             <div class="summary-grid">
               <p>
                 <strong>First Name:</strong>
                 <span id="summaryFirstName"></span>
               </p>
+              <p>
+                <strong>Last Name:</strong>
+                <span id="summaryLastName"></span>
+              </p>
+              <p>
+                <strong>Email Address:</strong>
+                <span id="summaryEmailAddress"></span>
+              </p>
+              <p>
+                <strong>Course Section:</strong>
+                <span id="summaryCourseSection"></span>
+              </p>
+              <p>
+                <strong>Quiz Topic:</strong>
+                <span id="summaryQuizTopic"></span>
+              </p>
             </div>
           </section>
         </aside>
 
-        <!-- Main quiz section - shown after quiz starts -->
+        <!-- Main quiz section -->
         <section id="quizSection" class="quiz-section hidden">
-          <!-- Header with title and countdown timer -->
+          <!-- Quiz header -->
           <div class="quiz-header">
             <div>
               <h2>Quiz Questions</h2>
               <p class="section-note">
-                Answer each question before the timer reaches zero.
+                Complete the information below to begin. Your participant
+                summary will appear after the quiz starts.
               </p>
-            </div>
-
-            <!-- Countdown timer display -->
-            <div class="timer-box">
-              <span class="timer-label">Time Left</span>
-              <!-- Display current time remaining -->
-              <input id="quizClock" value="60" readonly />
             </div>
           </div>
 
-          <!-- Quiz questions container -->
+          <!-- Quiz questions -->
           <div id="quizQuestions" class="questions-list">
             <!-- Question 1 -->
             <div class="question-row">
               <div class="question-content">
+                <div class="question-label">Question 1</div>
+
                 <div class="question-text">
-                  <label for="question1">1) 5 + 2x = 25</label>
+                  <label for="question1">5 + 2x = 25</label>
                 </div>
-                <!-- User input for question 1 -->
+
                 <div class="question-input">
                   <input id="question1" type="text" />
                 </div>
@@ -112,9 +179,12 @@
             <!-- Question 2 -->
             <div class="question-row">
               <div class="question-content">
+                <div class="question-label">Question 2</div>
+
                 <div class="question-text">
-                  <label for="question2">2) 30 - 5x = 10</label>
+                  <label for="question2">30 - 5x = 10</label>
                 </div>
+
                 <div class="question-input">
                   <input id="question2" type="text" />
                 </div>
@@ -124,9 +194,12 @@
             <!-- Question 3 -->
             <div class="question-row">
               <div class="question-content">
+                <div class="question-label">Question 3</div>
+
                 <div class="question-text">
-                  <label for="question3">3) 6 + 3x = -12</label>
+                  <label for="question3">6 + 3x = -12</label>
                 </div>
+
                 <div class="question-input">
                   <input id="question3" type="text" />
                 </div>
@@ -136,9 +209,12 @@
             <!-- Question 4 -->
             <div class="question-row">
               <div class="question-content">
+                <div class="question-label">Question 4</div>
+
                 <div class="question-text">
-                  <label for="question4">4) 44 - 12x = -16</label>
+                  <label for="question4">44 - 12x = -16</label>
                 </div>
+
                 <div class="question-input">
                   <input id="question4" type="text" />
                 </div>
@@ -148,9 +224,12 @@
             <!-- Question 5 -->
             <div class="question-row">
               <div class="question-content">
+                <div class="question-label">Question 5</div>
+
                 <div class="question-text">
-                  <label for="question5">5) 48 + 6x = 6</label>
+                  <label for="question5">48 + 6x = 6</label>
                 </div>
+
                 <div class="question-input">
                   <input id="question5" type="text" />
                 </div>
@@ -160,10 +239,10 @@
         </section>
       </div>
 
-      <!-- Results section - shown when quiz time expires or completes -->
+      <!-- Results section -->
       <section id="resultsSection" class="results-section hidden">
         <h2>Quiz Results</h2>
-        <!-- Display score message populated by JavaScript -->
+
         <p id="resultsMessage"></p>
       </section>
     </main>

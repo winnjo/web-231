@@ -21,11 +21,20 @@ const correctAnswers = ['10', '4', '-6', '5', '-7'] // Correct answer for each q
 // Setup form elements
 const quizSetup = document.getElementById('quizSetup')
 const firstName = document.getElementById('firstName')
+const lastName = document.getElementById('lastName')
+const emailAddress = document.getElementById('emailAddress')
+const courseSection = document.getElementById('courseSection')
+const quizTopic = document.getElementById('quizTopic')
+
 const errorBox = document.getElementById('errorBox') // Display validation errors
 
 // Participant summary section
 const summarySection = document.getElementById('summarySection')
 const summaryFirstName = document.getElementById('summaryFirstName')
+const summaryLastName = document.getElementById('summaryLastName')
+const summaryEmailAddress = document.getElementById('summaryEmailAddress')
+const summaryCourseSection = document.getElementById('summaryCourseSection')
+const summaryQuizTopic = document.getElementById('summaryQuizTopic')
 
 // Quiz and results elements
 const quizSection = document.getElementById('quizSection')
@@ -57,14 +66,25 @@ quizSetup.addEventListener('submit', function (event) {
   // Clear any previous error messages
   errorBox.textContent = ''
 
-  // Validate that first name is provided
-  if (firstName.value.trim() === '') {
-    errorBox.textContent = 'Enter your first name before starting the quiz.'
+  // Verify that all required participant fields have been completed
+  if (
+    firstName.value.trim() === '' ||
+    lastName.value.trim() === '' ||
+    emailAddress.value.trim() === '' ||
+    courseSection.value === '' ||
+    quizTopic.value.trim() === ''
+  ) {
+    errorBox.textContent = 'Please complete all required fields.'
     return
   }
 
   // Copy participant name to summary and show quiz
   summaryFirstName.textContent = firstName.value.trim()
+  summaryFirstName.textContent = firstName.value.trim()
+  summaryLastName.textContent = lastName.value.trim()
+  summaryEmailAddress.textContent = emailAddress.value.trim()
+  summaryCourseSection.textContent = courseSection.value
+  summaryQuizTopic.textContent = quizTopic.value.trim()
   summarySection.classList.remove('hidden')
   quizSection.classList.remove('hidden')
   resultsSection.classList.add('hidden')
