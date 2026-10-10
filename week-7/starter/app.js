@@ -14,6 +14,13 @@
 const quizTime = 60 // Quiz duration in seconds
 const correctAnswers = ['10', '4', '-6', '5', '-7'] // Correct answer for each question
 
+// Email validation pattern
+// Requires:
+// - an @ symbol
+// - no spaces
+// - an ending of .com or .net
+const emailPattern = /^[^\s@]+@[^\s@]+\.(com|net)$/i
+
 // ============================================
 // DOM Element References
 // ============================================
@@ -25,7 +32,6 @@ const lastName = document.getElementById('lastName')
 const emailAddress = document.getElementById('emailAddress')
 const courseSection = document.getElementById('courseSection')
 const quizTopic = document.getElementById('quizTopic')
-
 const errorBox = document.getElementById('errorBox') // Display validation errors
 
 // Participant summary section
@@ -78,13 +84,21 @@ quizSetup.addEventListener('submit', function (event) {
     return
   }
 
+  // Validate email address format
+  if (!emailPattern.test(emailAddress.value.trim())) {
+    errorBox.textContent =
+      'Please enter a valid email with an @ symbol, no spaces, and a .com or .net ending.'
+    return
+  }
+
   // Copy participant name to summary and show quiz
-  summaryFirstName.textContent = firstName.value.trim()
   summaryFirstName.textContent = firstName.value.trim()
   summaryLastName.textContent = lastName.value.trim()
   summaryEmailAddress.textContent = emailAddress.value.trim()
   summaryCourseSection.textContent = courseSection.value
   summaryQuizTopic.textContent = quizTopic.value.trim()
+
+  // Display the summary and quiz sections, hide results section
   summarySection.classList.remove('hidden')
   quizSection.classList.remove('hidden')
   resultsSection.classList.add('hidden')
